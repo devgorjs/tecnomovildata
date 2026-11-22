@@ -173,8 +173,13 @@ public final class RegistroDAO {
              PreparedStatement sentencia = conexion.prepareStatement(sql.toString())) {
             for (int indice = 0; indice < parametros.size(); indice++) {
                 Object valor = parametros.get(indice);
+
                 if (valor instanceof Long numero) {
                     sentencia.setLong(indice + 1, numero);
+
+                } else if (valor instanceof Integer numero) {
+                    sentencia.setInt(indice + 1, numero);
+
                 } else {
                     sentencia.setString(indice + 1, valor.toString());
                 }
